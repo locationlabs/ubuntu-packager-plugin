@@ -65,7 +65,7 @@ dir structure
                 ├── copyright
                 └── helloworld-example.install
 
-The following optional scripts can be added to `src/ubuntu/debian`
+The following optional scripts can be added to `main/deb/debian`
 
 * helloworld-example.default -- /etc/default/helloworld-example `holds environment variable defaults`
 * helloworld-example.init -- /etc/init.d/helloworld-example `system start-stop script`
@@ -74,7 +74,7 @@ The following optional scripts can be added to `src/ubuntu/debian`
 * helloworld-example.prerm -- `executed before removal`
 * helloworld-example.postrm -- `executed after removal`
 
-Finally you can still add any number of custom files to `src/ubuntu/overrides` which are copied to the same level as the contents of the tgz so they are available for use in `helloworld-example.install`
+Finally you can still add any number of custom files to `main/deb/overrides` which are copied to the same level as the contents of the tgz so they are available for use in `helloworld-example.install`
 
 See the [packaging guide](https://wiki.ubuntu.com/PackagingGuide/HandsOn) as for the format to use in these files.
 
