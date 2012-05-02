@@ -4,6 +4,16 @@ ubuntu-packager-plugin
 A basic Ubuntu/Debian packager plugin for [Gradle](http://gradle.org).
 It has some quirks but it should be possible to use it to create packages.
 
+Modified by @m0hit to create debian packages for Java web projects using gradle. 
+
+ - Remove the extract command, the war can be copied directly into the <build home>/ubuntu directory   
+ - Change the path for looking up debian files from src/ubuntu/ to main/deb/   
+   This is because deb packages work for more than ubuntu systems, and also to keep in accordance to 
+   maven project conventions.
+
+ - changed the name of the clean task to deb\_clean. 
+   The clean task conflicted with clean task defined in the gradle 'java' plugin.
+
 Example Project
 ---------------
 
@@ -48,9 +58,9 @@ dir structure
 
     helloworld-example
     ├── build.gradle
-    ├── helloworld.tar.gz
-    └── src
-        └── ubuntu
+    ├── helloworld.war
+    └── main  
+        └── deb 
             └── debian
                 ├── copyright
                 └── helloworld-example.install
@@ -71,12 +81,10 @@ See the [packaging guide](https://wiki.ubuntu.com/PackagingGuide/HandsOn) as for
 Usage
 -----
 
-    ~/helloworld-example$ gradle clean deb
+    ~/helloworld-example$ gradle deb_clean deb
 
 Quirks
 ------
-
-The plugin expects the presence of a tgz which isn't common for Java projects though not hard to make.
 
 The package will be named based on the gradle name property which is the same as the directory in which the gradle project is located. As a result when using a CI system such as jenkins this name/dir will be called workspace and is probably not what you want. To work around this I have been putting my package scripts in their own subdir named the way I want the package to be named.
 

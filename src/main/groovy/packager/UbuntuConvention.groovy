@@ -50,11 +50,11 @@ final class UbuntuConvention implements PackagerConvention {
     }
 
     private def toMakeDh = {
-        new MakeDh(new File(project.projectDir, 'src/ubuntu/debian'), new File(workDir, 'debian'), toContext())
+        new MakeDh(new File(project.projectDir, 'main/deb/debian'), new File(workDir, 'debian'), toContext())
     }
 
     private def toCopyOverrides = {
-        new CopyOverrides(new File(project.getProjectDir(), 'src/ubuntu/overrides'), workDir)
+        new CopyOverrides(new File(project.getProjectDir(), 'main/deb/overrides'), workDir)
     }
 
     private def toExtractor = {
@@ -127,7 +127,7 @@ final class UbuntuConvention implements PackagerConvention {
 
     private def toCommandTasks = [
             toDownloader,
-            toExtractor,
+            //toExtractor,
             toCopyOverrides,
             toMakeDh,
             toDebuild

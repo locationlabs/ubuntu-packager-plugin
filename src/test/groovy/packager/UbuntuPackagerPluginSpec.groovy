@@ -35,7 +35,7 @@ class UbuntuPackagerPluginSpec extends Specification {
 
         then:
         assert project.tasks.deb
-        assert project.tasks.clean
+        assert project.tasks.deb_clean
         assert project.convention.plugins.ubuntu in UbuntuConvention
     }
 
@@ -71,7 +71,7 @@ class UbuntuPackagerPluginSpec extends Specification {
         convention.workDir.mkdirs()
 
         when:
-        project.getTask('clean').tasks*.execute()
+        project.getTask('deb_clean').tasks*.execute()
 
         then:
         !convention.workDir.exists()
@@ -84,7 +84,7 @@ class UbuntuPackagerPluginSpec extends Specification {
         artifact.text = suffix
 
         when:
-        project.getTask('clean').tasks*.execute()
+        project.getTask('deb_clean').tasks*.execute()
 
         then:
         !artifact.exists()

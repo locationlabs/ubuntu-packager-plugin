@@ -55,7 +55,7 @@ class UbuntuConventionSpec extends Specification {
         expect:
         convention.toCommandTasks == [
                 convention.toDownloader,
-                convention.toExtractor,
+                //convention.toExtractor,
                 convention.toCopyOverrides,
                 convention.toMakeDh,
                 convention.toDebuild
@@ -150,7 +150,7 @@ class UbuntuConventionSpec extends Specification {
         }
 
         expect:
-        convention.toMakeDh() == new MakeDh(new File(project.projectDir, 'src/ubuntu/debian'), new File(work, 'debian'), context(
+        convention.toMakeDh() == new MakeDh(new File(project.projectDir, 'main/deb/debian'), new File(work, 'debian'), context(
                 name: project.name,
                 version: version,
                 releaseNotes: notes,
@@ -172,7 +172,7 @@ class UbuntuConventionSpec extends Specification {
 
     def "toCopyOverrides()"() {
         expect:
-        convention.toCopyOverrides() == new CopyOverrides(new File(project.projectDir, 'src/ubuntu/overrides'), work)
+        convention.toCopyOverrides() == new CopyOverrides(new File(project.projectDir, 'main/deb/overrides'), work)
     }
 
     def "toExtractor()"() {
